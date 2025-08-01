@@ -2,16 +2,19 @@
   --primary-blue: #00ccff;
   --primary-orange: #ff6600;
   --primary-red: #ff0033;
-  --dark: #0d0d0d;
-  --light: #ffffff;
   --accent: #00ff88;
+  --white: #ffffff;
+  --gray-light: #f8f9fb;
+  --text-dark: #111111;
+  --text-light: #ffffff;
 }
 
-body {
+/* Base styles */
+body.light-theme {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  background-color: var(--dark);
-  color: var(--light);
+  background-color: var(--white);
+  color: var(--text-dark);
   scroll-behavior: smooth;
 }
 
@@ -20,7 +23,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background: var(--dark);
+  background: var(--white);
+  border-bottom: 1px solid #eee;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -29,12 +33,12 @@ header {
 .logo {
   font-size: 28px;
   font-weight: 800;
-  color: var(--accent);
+  color: var(--text-dark);
 }
 
 .btn {
   background-color: var(--accent);
-  color: var(--dark);
+  color: var(--text-dark);
   border: none;
   padding: 12px 28px;
   border-radius: 8px;
@@ -49,20 +53,21 @@ header {
   box-shadow: 0 0 20px var(--accent);
 }
 
+/* Hero section */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 80px 20px;
-  background: linear-gradient(135deg, #001, #111);
+  background: var(--gray-light);
 }
 
 .hero-image {
   width: 300px;
   border-radius: 16px;
   margin-bottom: 24px;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
@@ -73,25 +78,27 @@ header {
 .hero p {
   font-size: 18px;
   margin-bottom: 24px;
-  color: #ccc;
+  color: #444;
 }
 
+/* Flavor cards */
 .flavor-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
   padding: 60px 20px;
+  background: var(--white);
 }
 
 .flavor {
   width: 300px;
-  background: #111;
+  background: var(--gray-light);
   border-radius: 12px;
   padding: 24px;
   text-align: center;
   transition: transform 0.4s ease;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .flavor:hover {
@@ -101,140 +108,54 @@ header {
 .flavor h2 {
   margin-bottom: 10px;
   font-size: 22px;
+  color: var(--text-dark);
 }
 
 .flavor p {
   font-size: 16px;
   margin-bottom: 12px;
+  color: #333;
 }
 
 .flavor img {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 16px;
-  box-shadow: 0 0 12px rgba(255,255,255,0.05);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
 }
 
 .flavor.blue {
   border: 2px solid var(--primary-blue);
-  box-shadow: 0 0 12px var(--primary-blue);
+  box-shadow: 0 0 8px var(--primary-blue);
 }
 
 .flavor.orange {
   border: 2px solid var(--primary-orange);
-  box-shadow: 0 0 12px var(--primary-orange);
+  box-shadow: 0 0 8px var(--primary-orange);
 }
 
 .flavor.red {
   border: 2px solid var(--primary-red);
-  box-shadow: 0 0 12px var(--primary-red);
+  box-shadow: 0 0 8px var(--primary-red);
 }
 
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  background: #111;
-  color: #888;
-}
-
-/* Scroll Reveal Base State */
+/* Scroll Reveal (optional) */
 .flavor {
   opacity: 0;
   transform: translateY(40px);
+  transition: all 0.6s ease-out;
 }
 
-/* Scroll Reveal Animation when .reveal class is added */
 .flavor.reveal {
   opacity: 1;
   transform: translateY(0);
-  transition: all 0.6s ease-out;
-}
-.flavor-detail {
-  background: #f9f9f9;
-  color: #111;
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.flavor-header {
+/* Footer */
+footer {
   text-align: center;
-  margin-bottom: 40px;
-}
-
-.flavor-header h2 {
-  font-size: 40px;
-  color: #00ccff;
-}
-
-.flavor-detail-img {
-  max-width: 220px;
-  margin-top: 20px;
-}
-
-.flavor-info {
-  max-width: 800px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.taste-description h4 {
-  margin-top: 0;
-  font-size: 18px;
-  color: #111;
-}
-
-.taste-description p {
-  margin-bottom: 20px;
-  font-size: 15px;
-}
-
-.taste-chart {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.taste-slider label {
-  font-size: 14px;
-  margin-bottom: 4px;
-  color: #333;
-}
-
-.taste-slider progress {
-  width: 100%;
-  height: 12px;
-  appearance: none;
-}
-
-.taste-slider progress::-webkit-progress-bar {
-  background-color: #ddd;
-  border-radius: 8px;
-}
-
-.taste-slider progress::-webkit-progress-value {
-  background-color: #00ccff;
-  border-radius: 8px;
-}
-
-.pill-info {
-  grid-column: span 2;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-
-.pill {
-  background: #00ccff;
-  color: #fff;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 20px;
+  padding: 40px 20px;
+  background: var(--gray-light);
+  color: #666;
   font-size: 14px;
 }
-
