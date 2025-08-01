@@ -11,35 +11,47 @@
 
   <header>
     <div class="logo">RepFuel</div>
-    <button class="btn" onclick="location.href='https://buy.stripe.com/test_4gwcQj8gk6hG3fSdQQ'">Buy Now</button>
+    <button class="btn" onclick="location.href='#buy'">Shop</button>
   </header>
 
-  <section class="hero">
-    <img src="images/blue.png" alt="RepFuel Hero Image" class="hero-image">
-    <h1>Clean Power in Every Chew</h1>
-    <p>Creatine Monohydrate Gummies — Select Your Flavor</p>
-  </section>
+  <main class="product-page">
+    <div class="product-image">
+      <img src="images/blue.png" alt="RepFuel Blue Raspberry Gummies" />
+    </div>
 
-  <section class="flavor-cards">
-    <div class="flavor blue">
-      <h2>Blue Raspberry</h2>
-      <p>Bright and bold, with electric blue energy. 5g Creatine Monohydrate.</p>
-      <img src="images/blue.png" alt="Blue Raspberry Gummies">
-      <button class="btn" onclick="location.href='https://buy.stripe.com/test_blue'">Buy Blue - $29.99</button>
+    <div class="product-details">
+      <h1>Blue Raspberry Creatine Gummies</h1>
+      <p class="subtitle">5g Creatine Monohydrate per serving · Vegan · Delicious</p>
+
+      <div class="price">$29.99</div>
+
+      <div class="options">
+        <h4>Choose Flavor</h4>
+        <div class="flavor-buttons">
+          <button class="flavor-btn selected">Blue Raspberry</button>
+          <button class="flavor-btn">Tangerine</button>
+          <button class="flavor-btn">Fruit Punch</button>
+        </div>
+
+        <h4>Serving Size</h4>
+        <div class="size-options">
+          <label><input type="radio" name="size" checked /> 1 Month</label>
+          <label><input type="radio" name="size" /> 2 Month</label>
+        </div>
+
+        <h4>Quantity</h4>
+        <div class="qty">
+          <button class="qty-btn">-</button>
+          <input type="number" value="1" min="1" />
+          <button class="qty-btn">+</button>
+        </div>
+      </div>
+
+      <button class="btn add-to-cart" id="buy">Add to Bag</button>
+
+      <p class="shipping-note">Free shipping on orders over $40</p>
     </div>
-    <div class="flavor orange">
-      <h2>Tangerine</h2>
-      <p>Zesty citrus burst that powers up your reps. 5g Creatine Monohydrate.</p>
-      <img src="images/orange.png" alt="Tangerine Gummies">
-      <button class="btn" onclick="location.href='https://buy.stripe.com/test_orange'">Buy Tangerine - $29.99</button>
-    </div>
-    <div class="flavor red">
-      <h2>Fruit Punch</h2>
-      <p>Sweet intensity with a tropical punch. 5g Creatine Monohydrate.</p>
-      <img src="images/red.png" alt="Fruit Punch Gummies">
-      <button class="btn" onclick="location.href='https://buy.stripe.com/test_red'">Buy Fruit Punch - $29.99</button>
-    </div>
-  </section>
+  </main>
 
   <footer>
     &copy; 2025 RepFuel. All rights reserved.
