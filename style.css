@@ -61,13 +61,16 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  box-shadow: none;         /* Remove any outer glow */
+  background: transparent;  /* Just in case */
 }
 
 .product-image img {
   width: 100%;
   max-width: 450px;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  background: transparent;
+  border-radius: 0;         /* Optional: flatten edges */
 }
 
 .product-details {
