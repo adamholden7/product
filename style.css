@@ -27,6 +27,21 @@ header {
   border-bottom: 1px solid var(--gray-border);
 }
 
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
 .logo {
   font-weight: 800;
   font-size: 24px;
