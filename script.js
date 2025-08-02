@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const priceFinal = document.querySelector('.price-final');
   const savingsLabel = document.querySelector('.savings-label');
 
-  // Prices for one-time
+  // One-time base prices
   const basePrices = {
     1: 29.99,
     2: 54.99,
@@ -19,54 +19,55 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const subscriptionDiscount = 0.15;
+  const imageMap = {
+    blue: 'images/blue.png',
+    orange: 'images/orange.png',
+    red: 'images/red.png'
+  };
 
   let selectedBundle = 1;
   let isSubscribed = false;
 
-  // Update Pricing Display
+  // 🔁 Update Pricing Display
   function updatePriceDisplay() {
-    let base = basePrices[selectedBundle];
-    let final = isSubscribed ? base * (1 - subscriptionDiscount) : base;
+    const quantity = parseInt(qtyInput.value);
+    const base = basePrices[selectedBundle];
+    const discounted = isSubscribed ? base * (1 - subscriptionDiscount) : base;
 
     priceOriginal.textContent = `$${base.toFixed(2)}`;
-    priceFinal.textContent = `$${final.toFixed(2)}`;
-
+    priceFinal.textContent = `$${discounted.toFixed(2)}`;
     savingsLabel.style.display = isSubscribed ? 'inline' : 'none';
   }
 
-  // Quantity +/- Logic
+  // ➕ ➖ Quantity Control
   plusBtn.addEventListener('click', () => {
     qtyInput.value = parseInt(qtyInput.value) + 1;
+    updatePriceDisplay();
   });
 
   minusBtn.addEventListener('click', () => {
-    if (parseInt(qtyInput.value) > 1) {
-      qtyInput.value = parseInt(qtyInput.value) - 1;
+    const current = parseInt(qtyInput.value);
+    if (current > 1) {
+      qtyInput.value = current - 1;
+      updatePriceDisplay();
     }
   });
 
-  // Flavor Selection
+  // 🎨 Flavor Selection
   flavorTiles.forEach(btn => {
     btn.addEventListener('click', () => {
       flavorTiles.forEach(b => b.classList.remove('selected', 'blue', 'orange', 'red'));
 
-      btn.classList.add('selected');
       const flavor = btn.getAttribute('data-flavor');
+      btn.classList.add('selected', flavor);
 
-      if (flavor === 'orange') {
-        btn.classList.add('orange');
-        productImg.src = 'images/orange.png';
-      } else if (flavor === 'red') {
-        btn.classList.add('red');
-        productImg.src = 'images/red.png';
-      } else {
-        btn.classList.add('blue');
-        productImg.src = 'images/blue.png';
+      if (productImg && imageMap[flavor]) {
+        productImg.src = imageMap[flavor];
       }
     });
   });
 
-  // Bundle Size Selection
+  // 📦 Bundle Selection
   bundleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       bundleBtns.forEach(b => b.classList.remove('selected'));
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Subscription Toggle
+  // 🔁 Subscription Toggle
   purchaseRadios.forEach(radio => {
     radio.addEventListener('change', () => {
       isSubscribed = (radio.value === 'subscribe' && radio.checked);
@@ -85,6 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Initialize display
+  // 🟢 Init
   updatePriceDisplay();
 });
