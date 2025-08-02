@@ -16,19 +16,22 @@
 
   <main class="product-page">
     <div class="product-image">
-      <img src="images/blue.png" alt="RepFuel Blue Raspberry Gummies" />
+      <!-- ✅ Add ID for dynamic flavor switching -->
+      <img id="product-img" src="images/blue.png" alt="RepFuel Blue Raspberry Gummies" />
     </div>
 
     <div class="product-details">
       <h1>Blue Raspberry Creatine Gummies</h1>
       <p class="subtitle">5g Creatine Monohydrate per serving · Vegan · Delicious</p>
 
+      <!-- ✅ This will get dynamically updated via JS -->
       <div class="price">$29.99</div>
 
       <div class="options">
         <h4>Choose Flavor</h4>
         <div class="flavor-buttons">
-          <button class="flavor-btn selected">Blue Raspberry</button>
+          <!-- ✅ Add base color classes so JS can toggle them -->
+          <button class="flavor-btn blue selected">Blue Raspberry</button>
           <button class="flavor-btn orange">Tangerine</button>
           <button class="flavor-btn red">Fruit Punch</button>
         </div>
