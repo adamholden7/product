@@ -111,6 +111,7 @@ header {
   font-size: 14px;
   color: #00aa66;
   margin-left: 10px;
+  display: none;
 }
 
 /* Purchase Type Toggle */
@@ -121,6 +122,7 @@ header {
 
 .purchase-type label {
   margin-right: 20px;
+  cursor: pointer;
 }
 
 /* Flavor Tiles */
@@ -141,22 +143,28 @@ header {
   transition: all 0.2s ease;
 }
 
-.flavor-tile.blue.selected {
-  background-color: #00ccff;
-  border-color: #00ccff;
+.flavor-tile:hover {
+  border-color: var(--primary);
+}
+
+.flavor-tile.selected {
   color: #fff;
+  font-weight: 600;
+}
+
+.flavor-tile.blue.selected {
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 .flavor-tile.orange.selected {
   background-color: var(--orange);
   border-color: var(--orange);
-  color: #fff;
 }
 
 .flavor-tile.red.selected {
   background-color: var(--red);
   border-color: var(--red);
-  color: #fff;
 }
 
 /* Bundle Buttons */
@@ -179,16 +187,17 @@ header {
   transition: all 0.2s ease;
 }
 
+.bundle-btn:hover {
+  border-color: var(--primary);
+}
+
 .bundle-btn.selected {
   border-color: var(--primary);
   background: #e6faff;
+  font-weight: 600;
 }
 
-.bundle-btn.popular {
-  position: relative;
-}
-
-.bundle-btn .tag {
+.bundle-btn.popular .tag {
   display: inline-block;
   background-color: var(--primary);
   color: #fff;
