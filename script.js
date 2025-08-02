@@ -2,10 +2,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const qtyInput = document.querySelector('.qty input');
   const plusBtn = document.querySelectorAll('.qty-btn')[1];
   const minusBtn = document.querySelectorAll('.qty-btn')[0];
-  const flavorBtns = document.querySelectorAll('.flavor-btn');
-  const priceTag = document.querySelector('.price');
-  const bundleSelect = document.getElementById('bundle');
+  const flavorTiles = document.querySelectorAll('.flavor-tile');
+  const bundleBtns = document.querySelectorAll('.bundle-btn');
+  const purchaseRadios = document.querySelectorAll('input[name="purchase"]');
   const productImg = document.getElementById('product-img');
+
+  const priceOriginal = document.querySelector('.price-original');
+  const priceFinal = document.querySelector('.price-final');
+  const savingsLabel = document.querySelector('.savings-label');
+
+  // Prices for one-time
+  const basePrices = {
+    1: 29.99,
+    2: 54.99,
+    3: 74.99
+  };
+
+  const subscriptionDiscount = 0.15;
+
+  let selectedBundle = 1;
+  let isSubscribed = false;
+
+  // Update Pricing Display
+  function updatePriceDisplay() {
+    let base = basePrices[selectedBundle];
+    let final = isSubscribed ? base * (1 - subscriptionDiscount) : base;
+
+    priceOriginal.textContent = `$${base.toFixed(2)}`;
+    priceFinal.textContent = `$${final.toFixed(2)}`;
+
+    savingsLabel.style.display = isSubscribed ? 'inline' : 'none';
+  }
 
   // Quantity +/- Logic
   plusBtn.addEventListener('click', () => {
@@ -18,40 +45,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Flavor Button Logic (color + image)
-  flavorBtns.forEach(btn => {
+  // Flavor Selection
+  flavorTiles.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Clear previous selection
-      flavorBtns.forEach(b => {
-        b.classList.remove('selected', 'blue', 'orange', 'red');
-      });
+      flavorTiles.forEach(b => b.classList.remove('selected', 'blue', 'orange', 'red'));
 
       btn.classList.add('selected');
+      const flavor = btn.getAttribute('data-flavor');
 
-      // Match based on button label
-      const flavor = btn.textContent.trim();
-
-      if (flavor.includes('Tangerine')) {
+      if (flavor === 'orange') {
         btn.classList.add('orange');
-        if (productImg) productImg.src = 'images/orange.png';
-      } else if (flavor.includes('Fruit Punch')) {
+        productImg.src = 'images/orange.png';
+      } else if (flavor === 'red') {
         btn.classList.add('red');
-        if (productImg) productImg.src = 'images/red.png';
+        productImg.src = 'images/red.png';
       } else {
         btn.classList.add('blue');
-        if (productImg) productImg.src = 'images/blue.png';
+        productImg.src = 'images/blue.png';
       }
     });
   });
 
-  // Dynamic Bundle Price
-  bundleSelect.addEventListener('change', () => {
-    const selected = bundleSelect.value;
-    let price = 29.99;
+  // Bundle Size Selection
+  bundleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      bundleBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
 
-    if (selected === '2') price = 54.99;
-    if (selected === '3') price = 74.99;
-
-    priceTag.textContent = `$${price.toFixed(2)}`;
+      selectedBundle = parseInt(btn.getAttribute('data-bundle'));
+      updatePriceDisplay();
+    });
   });
+
+  // Subscription Toggle
+  purchaseRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      isSubscribed = (radio.value === 'subscribe' && radio.checked);
+      updatePriceDisplay();
+    });
+  });
+
+  // Initialize display
+  updatePriceDisplay();
 });
