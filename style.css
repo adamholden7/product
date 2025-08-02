@@ -5,6 +5,8 @@
   --text-light: #ffffff;
   --gray-bg: #f9f9f9;
   --gray-border: #e1e1e1;
+  --orange: #ff6600;
+  --red: #ff0033;
 }
 
 body {
@@ -53,7 +55,7 @@ header {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
-  flex-wrap: nowrap; /* force side-by-side */
+  flex-wrap: nowrap;
 }
 
 .product-image {
@@ -61,8 +63,7 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  box-shadow: none;         /* Remove any outer glow */
-  background: transparent;  /* Just in case */
+  background: transparent;
 }
 
 .product-image img {
@@ -70,7 +71,7 @@ header {
   max-width: 450px;
   box-shadow: none;
   background: transparent;
-  border-radius: 0;         /* Optional: flatten edges */
+  border-radius: 0;
 }
 
 .product-details {
@@ -88,63 +89,121 @@ header {
   color: #444;
 }
 
-.price {
+/* Price Display */
+.price-block {
+  margin: 16px 0;
+}
+
+.price-original {
+  font-size: 16px;
+  color: #888;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+.price-final {
   font-size: 28px;
   font-weight: 700;
   color: var(--text-dark);
 }
 
-.options h4 {
-  margin: 20px 0 10px;
-  font-size: 16px;
+.savings-label {
+  font-size: 14px;
+  color: #00aa66;
+  margin-left: 10px;
 }
 
-.flavor-btn {
+/* Purchase Type Toggle */
+.purchase-type {
+  margin: 20px 0;
+  font-size: 15px;
+}
+
+.purchase-type label {
+  margin-right: 20px;
+}
+
+/* Flavor Tiles */
+.flavor-tiles {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.flavor-tile {
+  border: 2px solid var(--gray-border);
+  border-radius: 8px;
   padding: 10px 18px;
-  border-radius: 6px;
-  border: 1px solid var(--gray-border);
+  font-weight: 500;
   background-color: #fff;
   cursor: pointer;
-  font-weight: 500;
   transition: all 0.2s ease;
 }
 
-/* Remove generic .selected styling — we’ll now use color-specific ones below */
-
-.flavor-btn:hover {
-  background-color: var(--primary);
-  color: var(--text-light);
-  border-color: var(--primary);
-}
-
-.flavor-btn.blue.selected {
+.flavor-tile.blue.selected {
   background-color: #00ccff;
   border-color: #00ccff;
-  color: white;
+  color: #fff;
 }
 
-.flavor-btn.orange.selected {
-  background-color: #ff6600;
-  border-color: #ff6600;
-  color: white;
+.flavor-tile.orange.selected {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
 }
 
-.flavor-btn.red.selected {
-  background-color: #ff0033;
-  border-color: #ff0033;
-  color: white;
+.flavor-tile.red.selected {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: #fff;
 }
 
-
-.size-options label {
-  margin-right: 20px;
-  font-weight: 500;
+/* Bundle Buttons */
+.bundle-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
+.bundle-btn {
+  flex: 1 1 30%;
+  background: #f3f3f3;
+  border: 2px solid var(--gray-border);
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.bundle-btn.selected {
+  border-color: var(--primary);
+  background: #e6faff;
+}
+
+.bundle-btn.popular {
+  position: relative;
+}
+
+.bundle-btn .tag {
+  display: inline-block;
+  background-color: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+/* Quantity */
 .qty {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin: 16px 0;
 }
 
 .qty input {
@@ -166,6 +225,7 @@ header {
   padding: 0;
 }
 
+/* CTA */
 .add-to-cart {
   font-size: 18px;
   padding: 14px 0;
@@ -173,10 +233,12 @@ header {
   width: 100%;
 }
 
-.shipping-note {
+/* Perks / Note */
+.perks {
   font-size: 14px;
   color: #666;
-  margin-top: 6px;
+  margin-top: 12px;
+  line-height: 1.6;
 }
 
 /* Footer */
@@ -202,5 +264,9 @@ footer {
 
   .product-details h1 {
     font-size: 28px;
+  }
+
+  .bundle-options {
+    flex-direction: column;
   }
 }
